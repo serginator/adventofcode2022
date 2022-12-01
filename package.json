@@ -2,7 +2,7 @@
   "name": "adventofcode2022",
   "version": "0.0.1",
   "description": "Advent of Code 2022",
-  "main": "build/src/index.js",
+  "main": "build/main.js",
   "files": [
     "build"
   ],
@@ -13,14 +13,15 @@
     "test:watch": "npm test -- --watchAll",
     "lint": "eslint src --ext .ts",
     "lint:fix": "npm run lint -- --fix",
-    "start": "node build/src/index.js",
-    "build": "npm run lint && npm test && tsc -w -p tsconfig.json",
+    "start": "node build/main.js",
+    "build": "npm run lint && npm test && npm run cp-inputs && tsc -w -p tsconfig.json",
     "build:watch": "tsc -w -p tsconfig.json",
-    "build:release": "npm run clean && npm run lint && npm test && tsc -p tsconfig.release.json",
+    "build:release": "npm run clean && npm run lint && npm test && npm run cp-inputs && tsc -p tsconfig.release.json",
     "docs:generate": "auto-changelog -p; rm -rf docs && typedoc src/ --plugin typedoc-plugin-markdown --out docs && git add CHANGELOG.md",
     "docs:generate:html": "auto-changelog -p; rm -rf docs-html && typedoc src/ --plugin none --out docs-html && git add CHANGELOG.md",
     "docs:update": "npm run docs:generate && git commit -m \"📝 update docs\"",
-    "prettier": "prettier --config .prettierrc --write ."
+    "prettier": "prettier --config .prettierrc --write .",
+    "cp-inputs": "mkdir build && cp --parents src/**/input.txt build/ && mv build/src/* build/ && rm -rf build/src"
   },
   "repository": {
     "type": "git",

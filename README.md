@@ -7,3 +7,12 @@ Solutions:
 ----------
 
 * [Day 1: Calorie Counting](src/day01)
+
+Running the solutions:
+----------------------
+
+```bash
+npm install
+npm run build:release
+npm start
+```
