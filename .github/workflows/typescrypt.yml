@@ -33,12 +33,12 @@ jobs:
       - name: setup
         run: npm install
       - name: test
-        run: npm test:coverage
+        run: npm run test:coverage
       - name: upload coverage result to codacy
         uses: codacy/codacy-coverage-reporter-action@v1
         with:
           project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
-          coverage-reports: cobertura-coverage.xml
+          coverage-reports: coverage/cobertura-coverage.xml
       - name: upload coverage result to codecov
         uses: codecov/codecov-action@v3
         with:
