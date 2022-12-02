@@ -1,0 +1,46 @@
+name: TypeScript
+
+on:
+  push:
+    branches: '**'
+  pull_request:
+    branches: '**'
+
+jobs:
+  build:
+    name: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '16.x'
+      - run: npm install
+      - run: npm run build
+      - run: npm start
+  test:
+    name: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+      - name: setup node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16.x'
+      - name: setup
+        run: npm install
+      - name: test
+        run: npm test:coverage
+      - name: upload coverage result to codacy
+        uses: codacy/codacy-coverage-reporter-action@v1
+        with:
+          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+          coverage-reports: cobertura-coverage.xml
+      - name: upload coverage result to codecov
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          directory: coverage
