@@ -1,5 +1,7 @@
 # Advent of Code 2022
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/127343014ddf491d911cbdab2776382c)](https://app.codacy.com/gh/serginator/adventofcode2022?utm_source=github.com&utm_medium=referral&utm_content=serginator/adventofcode2022&utm_campaign=Badge_Grade_Settings)
+
 This repository contains my solutions to the [Advent of Code 2022](https://adventofcode.com/2022) challenges.
 
 ## Solutions
