@@ -1,7 +1,6 @@
---- Day 2: Rock Paper Scissors ---
-===============================
+# Day 2: Rock Paper Scissors
 
---- Part One ---
+## Part One
 
 The Elves begin to set up camp on the beach. To decide whose tent gets to be closest to the snack storage, a giant [Rock Paper Scissors](https://en.wikipedia.org/wiki/Rock_paper_scissors) tournament is already in progress.
 
@@ -30,7 +29,7 @@ In the second round, your opponent will choose Paper (_B_), and you should choos
 The third round is a draw with both players choosing Scissors, giving you a score of 3 + 3 = 6.
 In this example, if you were to follow the strategy guide, you would get a total score of **15** (8 + 1 + 6). **What would your total score be if everything goes exactly according to your strategy guide?**
 
---- Part Two ---
+## Part Two
 
 The Elf finishes helping with the tent and sneaks back over to you. "Anyway, the second column says how the round needs to end: _X_ means you need to lose, _Y_ means you need to end the round in a draw, and _Z_ means you need to win. Good luck!"
 
