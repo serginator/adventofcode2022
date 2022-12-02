@@ -14,7 +14,7 @@
     "lint": "eslint src --ext .ts",
     "lint:fix": "npm run lint -- --fix",
     "start": "node build/main.js",
-    "build": "npm run lint && npm test && npm run cp-inputs && tsc -w -p tsconfig.json",
+    "build": "npm run clean && npm run lint && npm test && npm run cp-inputs && tsc -w -p tsconfig.json",
     "build:watch": "tsc -w -p tsconfig.json",
     "build:release": "npm run clean && npm run lint && npm test && npm run cp-inputs && tsc -p tsconfig.release.json",
     "docs:generate": "auto-changelog -p; rm -rf docs && typedoc src/ --plugin typedoc-plugin-markdown --out docs && git add CHANGELOG.md",
