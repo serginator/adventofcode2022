@@ -24,7 +24,7 @@ describe('Day 02 - Rock Paper Scissors', () => {
   });
   it('part 1', () => {
     const expected = 15;
-    expect(day02.part01(input)).toBe(expected);
+    expect(day02.handleGame(input, day02.part01)).toBe(expected);
   });
 
   it('getLosePoints', () => {
@@ -45,6 +45,6 @@ describe('Day 02 - Rock Paper Scissors', () => {
 
   it('part 2', () => {
     const expected = 12;
-    expect(day02.part02(input)).toBe(expected);
+    expect(day02.handleGame(input, day02.part02)).toBe(expected);
   });
 })

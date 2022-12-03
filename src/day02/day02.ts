@@ -56,20 +56,23 @@ const getGamePoints = (opponent: string, player:string, hand: number): number =>
   return 0 + hand;
 };
 
-const part01 = (input: string): number => {
+const handleGame = (input: string, part: Function): number => {
   const games = input.split(/\n/).map(line => line.replace(/\s/g, ''));
   const points = games.map(game => {
     if (game.length !== 2) {
       return 0;
     }
     const [opponent, player] = game.split('');
-
-    const handPoints = getHandPoints(player);
-    const gamePoints = getGamePoints(opponent, player, handPoints);
-
-    return gamePoints;
+    return part(opponent, player);
   });
   return points.reduce((sum, number) => sum + number, 0);
+}
+
+const part01 = (opponent: string, player: string): number => {
+  const handPoints = getHandPoints(player);
+  const gamePoints = getGamePoints(opponent, player, handPoints);
+  return gamePoints;
+
 };
 
 const getLosePoints = (hand: string): number => {
@@ -81,29 +84,20 @@ const getDrawPoints = (hand: string): number => {
 const getWinPoints = (hand: string): number => {
   return WinPoints[hand as keyof OpponentHand];
 };
-const part02 = (input: string) => {
-  const games = input.split(/\n/).map(line => line.replace(/\s/g, ''));
-  const points = games.map(game => {
-    if (game.length !== 2) {
-      return 0;
-    }
-    const [opponent, roundEnd] = game.split('');
-
-    let roundPoints = 0;
-    let playerPoints = 0;
-    if (roundEnd === 'X') { // lose
-      roundPoints = 0;
-      playerPoints = getLosePoints(opponent);
-    } else if (roundEnd === 'Y') { // draw
-      roundPoints = 3;
-      playerPoints = getDrawPoints(opponent);
-    } else if (roundEnd === 'Z') { // win
-      roundPoints = 6;
-      playerPoints = getWinPoints(opponent);
-    }
-    return roundPoints + playerPoints;
-  });
-  return points.reduce((sum, number) => sum + number, 0);
+const part02 = (opponent: string, roundEnd: string) => {
+  let roundPoints = 0;
+  let playerPoints = 0;
+  if (roundEnd === 'X') { // lose
+    roundPoints = 0;
+    playerPoints = getLosePoints(opponent);
+  } else if (roundEnd === 'Y') { // draw
+    roundPoints = 3;
+    playerPoints = getDrawPoints(opponent);
+  } else if (roundEnd === 'Z') { // win
+    roundPoints = 6;
+    playerPoints = getWinPoints(opponent);
+  }
+  return roundPoints + playerPoints;
 };
 
 export default {
@@ -112,6 +106,7 @@ export default {
   getLosePoints,
   getDrawPoints,
   getWinPoints,
+  handleGame,
   part01,
   part02
 };
