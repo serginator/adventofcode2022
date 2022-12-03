@@ -12,6 +12,7 @@ This repository contains my solutions to the [Advent of Code 2022](https://adven
 
 - [Day 1: Calorie Counting](src/day01)
 - [Day 2: Rock Paper Scissors](src/day02)
+- [Day 3: Rucksack Reorganization](src/day03)
 
 ## Running the solutions
 
