@@ -15,8 +15,8 @@ const input03 = fs.readFileSync(path.join(__dirname, './day03/input.txt'), 'utf-
       part02: day01.part02(input01)
     },
     day02: {
-      part01: day02.part01(input02),
-      part02: day02.part02(input02)
+      part01: day02.handleGame(input02, day02.part01),
+      part02: day02.handleGame(input02, day02.part02)
     },
     day03: {
       part01: day03.part01(input03),

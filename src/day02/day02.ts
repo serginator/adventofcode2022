@@ -1,3 +1,5 @@
+type FnPart = (col1: string, col2: string) => number;
+
 type Hand = {
   X: number,
   Y: number,
@@ -56,7 +58,7 @@ const getGamePoints = (opponent: string, player:string, hand: number): number =>
   return 0 + hand;
 };
 
-const handleGame = (input: string, part: Function): number => {
+const handleGame = (input: string, part: FnPart): number => {
   const games = input.split(/\n/).map(line => line.replace(/\s/g, ''));
   const points = games.map(game => {
     if (game.length !== 2) {
@@ -68,7 +70,7 @@ const handleGame = (input: string, part: Function): number => {
   return points.reduce((sum, number) => sum + number, 0);
 }
 
-const part01 = (opponent: string, player: string): number => {
+const part01: FnPart = (opponent: string, player: string): number => {
   const handPoints = getHandPoints(player);
   const gamePoints = getGamePoints(opponent, player, handPoints);
   return gamePoints;
@@ -84,7 +86,7 @@ const getDrawPoints = (hand: string): number => {
 const getWinPoints = (hand: string): number => {
   return WinPoints[hand as keyof OpponentHand];
 };
-const part02 = (opponent: string, roundEnd: string) => {
+const part02: FnPart = (opponent: string, roundEnd: string) => {
   let roundPoints = 0;
   let playerPoints = 0;
   if (roundEnd === 'X') { // lose
