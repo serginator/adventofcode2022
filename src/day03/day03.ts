@@ -61,7 +61,7 @@ const part02 = (input: string): number => {
 };
 
 export default {
+  itemPriority,
   part01,
-  part02,
-  itemPriority
+  part02
 };
