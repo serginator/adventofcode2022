@@ -1,13 +1,40 @@
+type Hand = {
+  X: number,
+  Y: number,
+  Z: number,
+}
+type OpponentHand = {
+  A: number,
+  B: number,
+  C: number,
+}
+
+const HandPoints: Hand = {
+  X: 1,
+  Y: 2,
+  Z: 3,
+}
+
+const LosePoints: OpponentHand = {
+  A: 3,
+  B: 1,
+  C: 2,
+};
+
+const DrawPoints: OpponentHand = {
+  A: 1,
+  B: 2,
+  C: 3,
+};
+
+const WinPoints: OpponentHand = {
+  A: 2,
+  B: 3,
+  C: 1,
+};
+
 const getHandPoints = (hand: string): number => {
-  let points = 0;
-  if (hand === 'X') {
-    points = 1;
-  } else if (hand === 'Y') {
-    points = 2;
-  } else if (hand === 'Z') {
-    points = 3;
-  }
-  return points;
+  return HandPoints[hand as keyof Hand];
 };
 
 const getGamePoints = (opponent: string, player:string, hand: number): number => {
@@ -32,6 +59,9 @@ const getGamePoints = (opponent: string, player:string, hand: number): number =>
 const part01 = (input: string): number => {
   const games = input.split(/\n/).map(line => line.replace(/\s/g, ''));
   const points = games.map(game => {
+    if (game.length !== 2) {
+      return 0;
+    }
     const [opponent, player] = game.split('');
 
     const handPoints = getHandPoints(player);
@@ -42,42 +72,21 @@ const part01 = (input: string): number => {
   return points.reduce((sum, number) => sum + number, 0);
 };
 
-const getLosePoints = (opponent: string): number => {
-  let points = 0;
-  if (opponent === 'A') {
-    points = 3;
-  } else if (opponent === 'B') {
-    points = 1;
-  } else if (opponent === 'C') {
-    points = 2;
-  }
-  return points;
+const getLosePoints = (hand: string): number => {
+  return LosePoints[hand as keyof OpponentHand];
 };
-const getDrawPoints = (opponent: string): number => {
-  let points = 0;
-  if (opponent === 'A') {
-    points = 1;
-  } else if (opponent === 'B') {
-    points = 2;
-  } else if (opponent === 'C') {
-    points = 3;
-  }
-  return points;
+const getDrawPoints = (hand: string): number => {
+  return DrawPoints[hand as keyof OpponentHand];
 };
-const getWinPoints = (opponent: string): number => {
-  let points = 0;
-  if (opponent === 'A') {
-    points = 2;
-  } else if (opponent === 'B') {
-    points = 3;
-  } else if (opponent === 'C') {
-    points = 1;
-  }
-  return points;
+const getWinPoints = (hand: string): number => {
+  return WinPoints[hand as keyof OpponentHand];
 };
 const part02 = (input: string) => {
   const games = input.split(/\n/).map(line => line.replace(/\s/g, ''));
   const points = games.map(game => {
+    if (game.length !== 2) {
+      return 0;
+    }
     const [opponent, roundEnd] = game.split('');
 
     let roundPoints = 0;
