@@ -16,4 +16,12 @@ describe('Day 03 - Rucksack Reorganization', () => {
     const expected = 70;
     expect(day03.part02(input)).toBe(expected);
   });
+  it('itemPriority', () => {
+    expect(day03.itemPriority('a')).toBe(1);
+    expect(day03.itemPriority('z')).toBe(26);
+    expect(day03.itemPriority('A')).toBe(27);
+    expect(day03.itemPriority('Z')).toBe(52);
+    expect(day03.itemPriority('')).toBe(0);
+    expect(day03.itemPriority('_')).toBe(0);
+  });
 })

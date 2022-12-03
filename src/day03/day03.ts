@@ -1,15 +1,16 @@
 const itemPriority = (item: string): number => {
   if (item === '') {
     return 0;
+  } else {
+    const charCode = item.charCodeAt(0);
+    if (charCode >= 97 && charCode <= 122) {
+      return charCode - 96;
+    }
+    if (charCode >= 65 && charCode <= 90) {
+      return charCode - 38;
+    }
+    return 0;
   }
-  const charCode = item.charCodeAt(0);
-  if (charCode >= 97 && charCode <= 122) {
-    return charCode - 96;
-  }
-  if (charCode >= 65 && charCode <= 90) {
-    return charCode - 38;
-  }
-  return 0;
 };
 
 const part01 = (input: string): number => {
@@ -61,5 +62,6 @@ const part02 = (input: string): number => {
 
 export default {
   part01,
-  part02
+  part02,
+  itemPriority
 };
