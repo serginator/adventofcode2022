@@ -74,7 +74,6 @@ const part01: FnPart = (opponent: string, player: string): number => {
   const handPoints = getHandPoints(player);
   const gamePoints = getGamePoints(opponent, player, handPoints);
   return gamePoints;
-
 };
 
 const getLosePoints = (hand: string): number => {

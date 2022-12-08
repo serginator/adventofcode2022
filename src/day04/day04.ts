@@ -1,3 +1,5 @@
+type FnType = (a: string, b: string) => boolean;
+
 const checkOverlapping = (a: string, b: string): boolean => {
   const [a1, a2] = a.split('-').map(Number);
   const [b1, b2] = b.split('-').map(Number);
@@ -14,31 +16,24 @@ const checkAnyOverlapping = (a: string, b: string): boolean => {
   );
 };
 
-// handleClearing
-
-const part01 = (input: string): number => {
+const handleClearing = (input: string, fn: FnType): number => {
   const pairOfWorkers = input.split(/\n/).map(line => line.replace(/\s/g, ''));
   const overlapping = pairOfWorkers.filter(pair => {
     if (pair.length === 0) {
       return false;
     }
     const [a, b] = pair.split(',');
-    return checkOverlapping(a, b);
+    return fn(a, b);
   });
 
   return overlapping.length;
 };
-const part02 = (input: string): number => {
-  const pairOfWorkers = input.split(/\n/).map(line => line.replace(/\s/g, ''));
-  const anyOverlapping = pairOfWorkers.filter(pair => {
-    if (pair.length === 0) {
-      return false;
-    }
-    const [a, b] = pair.split(',');
-    return checkAnyOverlapping(a, b);
-  });
 
-  return anyOverlapping.length;
+const part01 = (input: string): number => {
+  return handleClearing(input, checkOverlapping);
+};
+const part02 = (input: string): number => {
+  return handleClearing(input, checkAnyOverlapping);
 };
 
 export default {
